@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/googleButton"
         style="@style/button"
         android:layout_width="325dp"
         android:layout_height="53dp"
@@ -42,7 +42,7 @@
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/googleButton" />
 
     <Button
         android:id="@+id/button3"
@@ -75,8 +75,8 @@
         android:layout_marginLeft="43dp"
         android:layout_marginTop="12dp"
         android:src="@drawable/google"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button"
+        app:layout_constraintStart_toStartOf="@+id/googleButton"
+        app:layout_constraintTop_toTopOf="@+id/googleButton"
          />
 
     <ImageView
