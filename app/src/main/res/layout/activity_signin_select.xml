@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/default_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -18,7 +16,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/googleButton"
         style="@style/button"
         android:layout_width="325dp"
         android:layout_height="53dp"
@@ -43,7 +41,7 @@
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/googleButton" />
 
     <Button
         android:id="@+id/button3"
@@ -65,9 +63,8 @@
         android:layout_marginLeft="56dp"
         android:src="@drawable/google"
         android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button"
-        />
+        app:layout_constraintStart_toStartOf="@+id/googleButton"
+        app:layout_constraintTop_toTopOf="@+id/googleButton" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -88,11 +85,12 @@
         android:layout_marginLeft="90dp"
         android:layout_marginTop="27dp"
         android:text="Don't have an account?"
+        android:textColor="#1E1E1E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/registerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"

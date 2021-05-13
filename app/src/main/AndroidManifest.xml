@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CommunityAid">
+        <activity android:name=".screens.Feed"></activity>
+        <activity android:name=".screens.Register" />
         <activity android:name=".screens.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,9 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".screens.SignIn" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

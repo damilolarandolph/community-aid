@@ -17,12 +17,12 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.prog.communityaid.R
 import com.prog.communityaid.auth.Auth
+import com.prog.communityaid.data.models.User
 import com.prog.communityaid.data.repositories.UserRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class SignIn : AppCompatActivity() {
-
+class Register : AppCompatActivity() {
     private lateinit var googleClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
 
@@ -54,31 +54,34 @@ class SignIn : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
+                    val userRepo = UserRepository()
                     GlobalScope.launch {
-                        val userRepo = UserRepository()
                         val result = userRepo.findWhere(
                             userRepo.collection.whereEqualTo(
                                 "email",
                                 user?.email
                             )
-                        ).await()
-
-                        if (result.isEmpty()) {
+                        )
+                            .await()
+                        if (result.isNotEmpty()) {
                             runOnUiThread {
                                 Toast.makeText(
                                     applicationContext,
-                                    "Account not registered",
+                                    "User already registered, sign in !",
                                     Toast.LENGTH_LONG
                                 ).show()
                                 auth.signOut()
                             }
 
                         } else {
-                            Auth.user = result[0]
+                            val dbUser = User()
+                            dbUser.email = user?.email!!
+                            dbUser.name = user.displayName!!
+                            userRepo.save(dbUser).await()
+                            Auth.user = dbUser
                             val intent = Intent(applicationContext, Feed::class.java)
                             startActivity(intent)
                         }
-
                     }
                 } else {
                     // If sign in fails, display a message to the user.
@@ -95,7 +98,7 @@ class SignIn : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         supportActionBar?.hide()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signin_select)
+        setContentView(R.layout.activity_register_select)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(
                 "205305548761-etgoganvsjsnmgh0bvjj45aj638ss266.apps.googleusercontent.com"
@@ -105,12 +108,15 @@ class SignIn : AppCompatActivity() {
             .build()
         this.googleClient = GoogleSignIn.getClient(this, gso)
         auth = Firebase.auth
+        val signInText = findViewById<TextView>(R.id.signinText)
         val googleButton = findViewById<Button>(R.id.googleButton)
-        val registerButton = findViewById<TextView>(R.id.registerText)
-        googleButton.setOnClickListener { this.signIn() }
-        registerButton.setOnClickListener {
-            val intent = Intent(applicationContext, Register::class.java)
+        signInText.setOnClickListener {
+            val intent = Intent(applicationContext, SignIn::class.java)
             startActivity(intent)
+        }
+
+        googleButton.setOnClickListener {
+            this.signIn()
         }
     }
 }
