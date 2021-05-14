@@ -58,6 +58,6 @@ abstract class Repository<T : Model>(_collection: CollectionReference) {
     }
 
 
-    abstract fun hydrator(doc: Map<String, Any>): T
+    protected abstract fun hydrator(doc: Map<String, Any>): T
 
 }
