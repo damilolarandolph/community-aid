@@ -16,7 +16,7 @@ abstract class Repository<T : Model>(_collection: CollectionReference) {
             field = value
         }
 
-    fun findById(id: String): Deferred<T> {
+    fun findByIdAsync(id: String): Deferred<T> {
 
         return GlobalScope.async {
             var snapShot = this@Repository.collection.document(id).get().await();
@@ -26,7 +26,7 @@ abstract class Repository<T : Model>(_collection: CollectionReference) {
 
     }
 
-    fun findAll(): Deferred<List<T>> {
+    fun findAllAsync(): Deferred<List<T>> {
         return GlobalScope.async {
             var snapShot = this@Repository.collection.get().await();
             var data =
@@ -35,7 +35,7 @@ abstract class Repository<T : Model>(_collection: CollectionReference) {
         }
     }
 
-    fun save(model: T): Deferred<Unit> {
+    fun saveAsync(model: T): Deferred<Unit> {
         return GlobalScope.async {
             var map = model.toMap()
             this@Repository.collection.document(model.id).set(map, SetOptions.merge())
@@ -43,12 +43,14 @@ abstract class Repository<T : Model>(_collection: CollectionReference) {
         }
     }
 
-    public fun update(model: T) {
-
+    fun deleteAsync(model: T): Deferred<Unit> {
+        return GlobalScope.async {
+            this@Repository.collection.document(model.id).delete().await()
+        }
     }
 
 
-    public fun findWhere(query: Query): Deferred<List<T>> {
+    public fun findWhereAsync(query: Query): Deferred<List<T>> {
         return GlobalScope.async {
             var results = query.get().await()
             return@async results.map { result -> hydrator(result.data as Map<String, Any>) }
