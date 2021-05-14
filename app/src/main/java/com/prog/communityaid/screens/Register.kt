@@ -56,7 +56,7 @@ class Register : AppCompatActivity() {
                     val user = auth.currentUser
                     val userRepo = UserRepository()
                     GlobalScope.launch {
-                        val result = userRepo.findWhere(
+                        val result = userRepo.findWhereAsync(
                             userRepo.collection.whereEqualTo(
                                 "email",
                                 user?.email
@@ -77,7 +77,7 @@ class Register : AppCompatActivity() {
                             val dbUser = User()
                             dbUser.email = user?.email!!
                             dbUser.name = user.displayName!!
-                            userRepo.save(dbUser).await()
+                            userRepo.saveAsync(dbUser).await()
                             Auth.user = dbUser
                             val intent = Intent(applicationContext, Feed::class.java)
                             startActivity(intent)

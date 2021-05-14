@@ -56,7 +56,7 @@ class SignIn : AppCompatActivity() {
                     val user = auth.currentUser
                     GlobalScope.launch {
                         val userRepo = UserRepository()
-                        val result = userRepo.findWhere(
+                        val result = userRepo.findWhereAsync(
                             userRepo.collection.whereEqualTo(
                                 "email",
                                 user?.email
