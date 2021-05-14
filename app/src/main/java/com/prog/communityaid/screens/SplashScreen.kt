@@ -36,7 +36,7 @@ class SplashScreen : AppCompatActivity() {
                 startActivity(intent)
             } else {
                 GlobalScope.launch {
-                    val result = userRepo.findWhere(
+                    val result = userRepo.findWhereAsync(
                         userRepo.collection.whereEqualTo(
                             "email",
                             user?.email
