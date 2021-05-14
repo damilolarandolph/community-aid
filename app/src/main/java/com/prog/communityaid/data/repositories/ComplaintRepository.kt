@@ -19,6 +19,8 @@ class ComplaintRepository : Repository<Complaint>(Firebase.firestore.collection(
         complaint.lat = doc["lat"] as Number
         complaint.long = doc["long"] as Number
         complaint.userId = doc["userId"] as String
+        @Suppress("UNCHECKED_CAST")
+        complaint.complaintInfo = (doc["complaintInfo"] as MutableMap<String, String>)
         return complaint
     }
 }

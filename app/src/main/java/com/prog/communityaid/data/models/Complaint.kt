@@ -16,6 +16,7 @@ class Complaint : Model() {
     lateinit var title: String
     lateinit var description: String
     lateinit var pictures: List<URI>
+    var complaintInfo: MutableMap<String, String> = HashMap()
     var lat: Number = 0.0
     var long: Number = 0.0
     lateinit var videos: List<URI>
@@ -38,6 +39,7 @@ class Complaint : Model() {
         map["lat"] = this.lat
         map["long"] = this.long
         map["userId"] = this.userId
+        map["complaintInfo"] = complaintInfo
         return map
     }
 
