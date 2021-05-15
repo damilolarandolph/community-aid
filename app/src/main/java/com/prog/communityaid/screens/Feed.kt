@@ -2,23 +2,25 @@ package com.prog.communityaid.screens
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.EditText
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.prog.communityaid.R
 import com.prog.communityaid.data.models.Complaint
 import com.prog.communityaid.data.repositories.ComplaintRepository
+import com.prog.communityaid.storage.StorageController
+import com.prog.communityaid.utils.Filesystem
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class Feed : AppCompatActivity() {
+
+    private var storageController = StorageController()
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +45,12 @@ class Feed : AppCompatActivity() {
 }
 
 
-class ListViewAdapter(_context: Context, _complaints: List<Complaint>) : BaseAdapter() {
+class ListViewAdapter(_context: AppCompatActivity, _complaints: List<Complaint>) : BaseAdapter() {
 
-    private var context = _context
+    private val context = _context
     private var complaints = _complaints
+    private var storageController = StorageController()
+
 
     override fun getCount(): Int {
         return complaints.size
@@ -71,15 +75,38 @@ class ListViewAdapter(_context: Context, _complaints: List<Complaint>) : BaseAda
         row.findViewById<TextView>(R.id.commentCount).text = "loading"
         row.findViewById<TextView>(R.id.likeCount).text = "loading"
 
+        val pictureFile = Filesystem.createImageFile(context)
+
         GlobalScope.launch {
-            row.findViewById<TextView>(R.id.userName).text = complaint.getUserAsync().await().name
-            row.findViewById<TextView>(R.id.likeCount).text =
-                complaint.getLikesAsync().await().size.toString()
-            row.findViewById<TextView>(R.id.commentCount).text =
-                complaint.getCommentsAsync().await().size.toString()
+            complaint.getUserAsync().await().name.also {
+                this@ListViewAdapter.context.runOnUiThread {
+                    row.findViewById<TextView>(R.id.userName).text =
+                        it
+                }
+            }
+
+            complaint.getLikesAsync().await().size.toString().also {
+                this@ListViewAdapter.context.runOnUiThread {
+                    row.findViewById<TextView>(R.id.likeCount).text =
+                        it
+                }
+            }
+            complaint.getCommentsAsync().await().size.toString().also {
+                this@ListViewAdapter.context.runOnUiThread {
+                    row.findViewById<TextView>(R.id.commentCount).text =
+                        it
+                }
+            }
+            StorageController.getFile(complaint.picture, pictureFile).await().also {
+                this@ListViewAdapter.context.runOnUiThread {
+                    row.findViewById<ImageView>(R.id.image).invalidate()
+                    row.findViewById<ImageView>(R.id.image)
+                        .setImageDrawable(Drawable.createFromPath(pictureFile.path))
+                }
+            }
         }
 
-        return row;
+        return row
     }
 
 }
