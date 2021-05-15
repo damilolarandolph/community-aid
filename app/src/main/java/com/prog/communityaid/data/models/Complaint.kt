@@ -6,20 +6,19 @@ import com.prog.communityaid.data.repositories.UserRepository
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import java.net.URI
 
 class Complaint : Model() {
 
     lateinit var complaintType: String
-    lateinit var at: Number
+    var at: Number = System.currentTimeMillis() / 1000
     lateinit var userId: String
     lateinit var title: String
     lateinit var description: String
-    lateinit var pictures: List<URI>
+    lateinit var picture: String
+    lateinit var video: String
     var complaintInfo: MutableMap<String, String> = HashMap()
     var lat: Number = 0.0
     var long: Number = 0.0
-    lateinit var videos: List<URI>
     private var _comments: List<Comment>? = null
     private var _likes: List<Like>? = null
     private var _user: User? = null
@@ -34,12 +33,13 @@ class Complaint : Model() {
         map["at"] = this.at
         map["title"] = this.title
         map["description"] = this.description
-        map["pictures"] = this.pictures.map { uri -> uri.toString() }
-        map["videos"] = this.videos.map { uri -> uri.toString() }
+        map["video"] = this.video
+        map["picture"] = this.picture
         map["lat"] = this.lat
         map["long"] = this.long
         map["userId"] = this.userId
         map["complaintInfo"] = complaintInfo
+        map["id"] = this.id
         return map
     }
 
@@ -65,9 +65,9 @@ class Complaint : Model() {
 
     fun getLikesAsync(): Deferred<List<Like>> {
         return GlobalScope.async {
-            if (_comments == null) {
+            if (_likes == null) {
                 val query = likeRepository.collection.whereEqualTo("complaintId", id)
-                _comments = commentRepository.findWhereAsync(query).await()
+                _likes = likeRepository.findWhereAsync(query).await()
             }
             return@async _likes!!
         }
