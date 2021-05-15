@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/poleNumber"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/custom_edit_text"
+        android:ems="10"
+        android:hint="Pole Number"
+        android:inputType="text"
+        android:textColor="#3E3E3E"
+        android:textColorHint="#7E7E7E"
+        android:textSize="16sp"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/meterNumber"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/custom_edit_text"
+        android:ems="10"
+        android:hint="Meter Number"
+        android:inputType="text"
+        android:textColor="#3E3E3E"
+        android:textColorHint="#7E7E7E"
+        android:textSize="16sp"
+        android:importantForAutofill="no" />
+
+</LinearLayout>
