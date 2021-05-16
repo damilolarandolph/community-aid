@@ -29,6 +29,7 @@ class Comment : Model() {
         map["userId"] = this.userId
         map["complaintId"] = this.complaintId
         map["body"] = this.body
+        map["id"] = this.id
         return map
     }
 }

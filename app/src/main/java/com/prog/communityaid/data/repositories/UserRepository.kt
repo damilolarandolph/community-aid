@@ -12,6 +12,7 @@ class UserRepository : Repository<User>(Firebase.firestore.collection("users")) 
         user.email = doc["email"] as String
         user.name = doc["name"] as String
         user.id = doc["id"] as String
+        user.userType = if (doc["userType"] != null) doc["userType"] as String else "user"
         return user
     }
 

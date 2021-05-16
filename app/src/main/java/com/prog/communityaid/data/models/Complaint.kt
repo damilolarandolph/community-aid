@@ -16,6 +16,7 @@ class Complaint : Model() {
     lateinit var description: String
     lateinit var picture: String
     lateinit var video: String
+    public var solved = false
     var complaintInfo: MutableMap<String, String> = HashMap()
     var lat: Number = 0.0
     var long: Number = 0.0
@@ -39,6 +40,7 @@ class Complaint : Model() {
         map["long"] = this.long
         map["userId"] = this.userId
         map["complaintInfo"] = complaintInfo
+        map["solved"] = this.solved
         map["id"] = this.id
         return map
     }
