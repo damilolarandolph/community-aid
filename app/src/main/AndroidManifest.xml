@@ -25,7 +25,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CommunityAid">
-
+        <activity android:name=".screens.AuthoritySignIn"></activity>
+        <activity android:name=".screens.ViewComplaint" />
         <activity android:name=".screens.CreateComplaint" />
         <activity android:name=".screens.Feed" />
         <activity android:name=".screens.Register" />
@@ -38,6 +39,10 @@
         </activity>
         <activity android:name=".screens.SignIn" />
         <activity android:name=".MainActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
