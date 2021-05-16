@@ -1,76 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center_horizontal"
     android:background="@color/backgroundColor"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <View
+    <LinearLayout
         android:id="@+id/view"
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="77dp"
-        android:background="@drawable/appbar_design"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="45dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/back"
-        android:padding="0dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/imageButton7"
-        android:layout_width="48dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:backgroundTint="@color/transparent"
-        android:scaleType="fitXY"
-        android:src="@drawable/notification"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        android:layout_height="66dp"
+        android:background="@drawable/appbar_design">
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginLeft="108dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="sans-serif-thin"
-        android:text="Feed"
-        android:textAllCaps="true"
-        android:textColor="#555555"
-        android:textFontWeight="900"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Space
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:text="Feed"
+            android:textAllCaps="true"
+            android:textColor="#555555"
+            android:textFontWeight="900"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="109dp"
+            android:layout_height="38dp"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/signinColor"
+            android:outlineAmbientShadowColor="@color/white"
+            android:outlineSpotShadowColor="@color/white"
+            android:text="Logout"
+            android:textColor="#FFFFFF" />
+
+
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/postEditText"
         android:layout_width="352dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_height="59dp"
         android:background="@drawable/custom_edit_text"
         android:clickable="false"
         android:ems="10"
@@ -78,29 +66,18 @@
         android:inputType="textPersonName"
         android:padding="15dp"
         android:textColorHint="#9C9C9C"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        android:textSize="14sp" />
 
-    <include
-        android:id="@+id/include3"
-        layout="@layout/bottom_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ListView
         android:id="@+id/feedList"
         android:layout_width="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/include3"
-        app:layout_constraintTop_toBottomOf="@+id/postEditText"
+        android:layout_height="match_parent"
         android:layout_margin="10dp"
-        tools:layout_editor_absoluteX="1dp"
-        android:layout_height="wrap_content" />
+        android:layout_weight="1"
+        android:background="#00FFFFFF"
+        tools:layout_editor_absoluteX="1dp" />
+
 
     <include
         android:id="@+id/include4"
@@ -109,4 +86,4 @@
         android:layout_height="match_parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

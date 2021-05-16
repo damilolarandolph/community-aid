@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
-    android:background="#FFFFFF">
+    android:layout_marginBottom="40dp"
+    android:background="#00FFFFFF"
+    android:padding="30dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -160,7 +162,7 @@
                     tools:layout_editor_absoluteY="361dp" />
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/likeButton"
                     android:layout_width="38dp"
                     android:layout_height="39dp"
                     app:srcCompat="@android:drawable/stat_sys_headset"
@@ -173,7 +175,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:gravity="center"
-                    android:text="@string/_213"
+                    android:text="213"
                     android:textColor="#818181"
                     tools:layout_editor_absoluteX="146dp"
                     tools:layout_editor_absoluteY="361dp" />
