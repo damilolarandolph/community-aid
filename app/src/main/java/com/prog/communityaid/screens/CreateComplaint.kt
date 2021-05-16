@@ -220,7 +220,7 @@ class CreateComplaint : AppCompatActivity() {
             runOnUiThread {
                 loader.visibility = View.VISIBLE
             }
-            complaint.userId = Auth.user.id
+            complaint.userId = Auth.user!!.id
             val pictureUrl = StorageController.upload(imageFile).await()
             complaint.picture = pictureUrl
             val videoUri = StorageController.upload(videoFile).await()
