@@ -107,6 +107,11 @@ class SignIn : AppCompatActivity() {
         auth = Firebase.auth
         val googleButton = findViewById<Button>(R.id.googleButton)
         val registerButton = findViewById<TextView>(R.id.registerText)
+        val loginAuthorityButton = findViewById<Button>(R.id.loginAuthority)
+        loginAuthorityButton.setOnClickListener {
+            val intent = Intent(this, AuthoritySignIn::class.java)
+            startActivity(intent)
+        }
         googleButton.setOnClickListener { this.signIn() }
         registerButton.setOnClickListener {
             val intent = Intent(applicationContext, Register::class.java)
