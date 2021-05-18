@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="77dp"
+        android:layout_height="88dp"
         android:background="@drawable/appbar_design"
         android:gravity="center">
 
@@ -49,14 +49,15 @@
         <Button
             android:id="@+id/solveButton"
             android:layout_width="109dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:backgroundTint="@color/signinColor"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:outlineAmbientShadowColor="@color/white"
             android:outlineSpotShadowColor="@color/white"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:text="Solve"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@color/default_color" />
     </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout
@@ -72,7 +73,7 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Details" />
+            android:text="Comments" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
