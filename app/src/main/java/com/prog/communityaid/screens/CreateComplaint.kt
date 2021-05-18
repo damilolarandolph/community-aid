@@ -2,6 +2,7 @@ package com.prog.communityaid.screens
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -71,6 +72,14 @@ class CreateComplaint : AppCompatActivity() {
         imageView = findViewById(R.id.imagePreview)
         videoView = findViewById(R.id.videoView2)
         loader = findViewById(R.id.loader)
+        val callButton = findViewById<ImageButton>(R.id.callAuthButton)
+
+
+        callButton.setOnClickListener {
+            openDialog()
+        }
+
+
         takeVideoButton.setOnClickListener {
             Intent(MediaStore.ACTION_VIDEO_CAPTURE).also { intent ->
 
@@ -215,6 +224,38 @@ class CreateComplaint : AppCompatActivity() {
 
     }
 
+    private fun openDialog() {
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.setTitle("Choose authority")
+
+        val authorities = arrayOf("ECG", "GWC", "MRH")
+
+        alertDialog.setItems(
+            authorities
+        ) { _, which ->
+            when (which) {
+                0 -> {
+                    val intent =
+                        Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "+23321676761", null))
+                    startActivity(intent)
+                }
+                1 -> {
+                    val intent =
+                        Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "+23380040000", null))
+                    startActivity(intent)
+                }
+                2 -> {
+                    val intent =
+                        Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "+233302671328", null))
+                    startActivity(intent)
+                }
+            }
+        }
+
+        alertDialog.create().show();
+
+    }
+
     private fun submitComplaint() {
         GlobalScope.launch {
             runOnUiThread {
@@ -329,9 +370,13 @@ class TabAdapter(
                 complaint.complaintType = "ecg"
                 ECGFragment(complaint)
             }
-            else -> {
+            1 -> {
                 complaint.complaintType = "gwc"
                 GWCFragment(complaint)
+            }
+            else -> {
+                complaint.complaintType = "grt"
+                GRTFragment(complaint)
             }
         }
     }
@@ -394,6 +439,34 @@ class GWCFragment(_complaint: Complaint) : Fragment() {
 
             override fun afterTextChanged(p0: Editable?) {
                 complaint.complaintInfo["pumpNumber"] = p0!!.toString()
+            }
+
+        })
+        return view
+    }
+
+}
+
+
+class GRTFragment(_complaint: Complaint) : Fragment() {
+    private var complaint = _complaint
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.activity_gwc, container, false)
+        view.findViewById<EditText>(R.id.pumpNumber).hint = "Road or Street Name"
+        view.findViewById<EditText>(R.id.pumpNumber).addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                complaint.complaintInfo["roadName"] = p0!!.toString()
             }
 
         })
