@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,22 +8,38 @@
     android:padding="40dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageMore"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="359dp"
-            android:contentDescription="Complaint Image"
-            android:scaleType="centerCrop"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp">
 
-        <VideoView
-            android:id="@+id/videoMore"
-            android:layout_width="match_parent"
-            android:layout_height="307dp"
-            android:layout_marginTop="30dp" />
+            <ImageView
+                android:id="@+id/imageMore"
+                android:layout_width="match_parent"
+                android:layout_height="359dp"
+                android:contentDescription="Complaint Image"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@tools:sample/avatars" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            app:cardCornerRadius="10dp">
+
+            <VideoView
+                android:id="@+id/videoMore"
+                android:layout_width="match_parent"
+                android:layout_height="307dp" />
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 </ScrollView>
