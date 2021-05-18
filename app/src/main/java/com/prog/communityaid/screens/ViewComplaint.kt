@@ -50,10 +50,11 @@ class ViewComplaint : AppCompatActivity() {
                     .await()
 
             runOnUiThread {
-                if (complaints.solved) {
-                    solveButton.visibility = View.GONE
-                } else {
-                    solveButton.visibility = View.VISIBLE
+
+                if (Auth.user!!.userType != "user") {
+                    if (complaints.solved) {
+                        solveButton.visibility = View.GONE
+                    }
                 }
 
                 solveButton.setOnClickListener {
