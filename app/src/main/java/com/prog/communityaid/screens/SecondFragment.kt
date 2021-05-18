@@ -41,11 +41,16 @@ class SecondFragment(private var complaint: Complaint) : Fragment(), OnMapReadyC
             meterNumber.visibility = View.VISIBLE
             polNumber.setText(complaint.complaintInfo["poleNumber"])
             meterNumber.setText(complaint.complaintInfo["meterNumber"])
-        } else {
+        } else if (complaint.complaintType == "gwc") {
             pumpNumber.visibility = View.VISIBLE
             polNumber.visibility = View.GONE
             meterNumber.visibility = View.GONE
             pumpNumber.setText(complaint.complaintInfo["pumpNumber"])
+        } else {
+            pumpNumber.visibility = View.VISIBLE
+            polNumber.visibility = View.GONE
+            meterNumber.visibility = View.GONE
+            pumpNumber.setText(complaint.complaintInfo["roadName"])
         }
 
         return view
