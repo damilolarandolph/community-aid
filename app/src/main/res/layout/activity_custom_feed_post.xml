@@ -7,7 +7,7 @@
     android:layout_margin="20dp"
     android:layout_marginBottom="40dp"
     android:background="#00FFFFFF"
-    android:padding="30dp">
+    android:padding="10dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -30,28 +30,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="44dp"
-                    android:layout_height="46dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
-                    android:elevation="0dp"
-                    android:outlineSpotShadowColor="@color/white"
-                    android:padding="0px"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="0dp"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="16dp">
-
-                    <ImageView
-                        android:id="@+id/editAccountImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="0px"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/user" />
-                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/userName"
@@ -165,7 +143,8 @@
                     android:id="@+id/likeButton"
                     android:layout_width="38dp"
                     android:layout_height="39dp"
-                    app:srcCompat="@android:drawable/stat_sys_headset"
+                    android:background="@drawable/love"
+                    app:srcCompat="@drawable/love"
                     tools:layout_editor_absoluteX="108dp"
                     tools:layout_editor_absoluteY="357dp" />
 
