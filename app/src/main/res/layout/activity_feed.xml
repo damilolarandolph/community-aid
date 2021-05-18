@@ -2,6 +2,7 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center_horizontal"
     android:background="@color/backgroundColor"
@@ -12,10 +13,10 @@
 
     <LinearLayout
         android:id="@+id/view"
-        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="66dp"
-        android:background="@drawable/appbar_design">
+        android:layout_height="wrap_content"
+        android:background="@drawable/appbar_design"
+        android:gravity="center">
 
 
         <Space
@@ -42,32 +43,39 @@
         <Button
             android:id="@+id/logoutButton"
             android:layout_width="109dp"
-            android:layout_height="38dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:backgroundTint="@color/signinColor"
             android:outlineAmbientShadowColor="@color/white"
             android:outlineSpotShadowColor="@color/white"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:text="Logout"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@color/default_color" />
 
 
     </LinearLayout>
 
 
-    <EditText
-        android:id="@+id/postEditText"
-        android:layout_width="352dp"
-        android:layout_marginTop="20dp"
-        android:layout_height="59dp"
-        android:background="@drawable/custom_edit_text"
-        android:clickable="false"
-        android:ems="10"
-        android:hint="What's going on in your community?"
-        android:inputType="textPersonName"
-        android:padding="15dp"
-        android:textColorHint="#9C9C9C"
-        android:textSize="14sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
+        <EditText
+            android:id="@+id/postEditText"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:background="@drawable/custom_edit_text"
+            android:clickable="false"
+            android:ems="10"
+            android:hint="What's going on in your community?"
+            android:inputType="textPersonName"
+            android:textColorHint="#9C9C9C"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/feedList"
